@@ -1,0 +1,32 @@
+<h2>{{ fruitId ? 'Edit' : 'Add' }} Fruit</h2>
+<form [formGroup]="fruitForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" />
+    <div *ngIf="fruitForm.get('name')?.invalid && fruitForm.get('name')?.touched">
+      <small *ngIf="fruitForm.get('name')?.errors?.['required']">Name is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="quantity">Quantity:</label>
+    <input id="quantity" formControlName="quantity" type="number" />
+    <div *ngIf="fruitForm.get('quantity')?.invalid && fruitForm.get('quantity')?.touched">
+      <small *ngIf="fruitForm.get('quantity')?.errors?.['required']">Quantity is required.</small>
+      <small *ngIf="fruitForm.get('quantity')?.errors?.['min']">Quantity must be at least 1.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input id="price" formControlName="price" type="number" />
+    <div *ngIf="fruitForm.get('price')?.invalid && fruitForm.get('price')?.touched">
+      <small *ngIf="fruitForm.get('price')?.errors?.['required']">Price is required.</small>
+      <small *ngIf="fruitForm.get('price')?.errors?.['min']">Price must be at least 0.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="fruitForm.invalid">Save</button>
+</form>
+
+<a routerLink="/">Back to List</a>

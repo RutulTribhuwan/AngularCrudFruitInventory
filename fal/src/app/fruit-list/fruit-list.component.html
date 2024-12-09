@@ -1,0 +1,23 @@
+<h2>Fruit List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fruit of fruits">
+      <td>{{ fruit.name }}</td>
+      <td>{{ fruit.quantity }}</td>
+      <td>{{ fruit.price | currency }}</td>
+      <td>
+        <a [routerLink]="['/edit', fruit.id]">Edit</a>
+        <button (click)="deleteFruit(fruit.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a routerLink="/add">Add Fruit</a>
